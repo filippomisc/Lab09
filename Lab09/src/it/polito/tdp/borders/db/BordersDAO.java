@@ -14,7 +14,7 @@ public class BordersDAO {
 
 	public List<Country> loadAllCountries() {
 
-		String sql = "SELECT ccode, StateAbb, StateNme FROM country ORDER BY StateAbb";
+		String sql = "SELECT ccode, StateAbb, StateNme FROM country ORDER BY ccode";
 		List<Country> result = new ArrayList<Country>();
 		
 		try {
