@@ -33,10 +33,11 @@ public class BordersController {
 	void doCalcolaConfini(ActionEvent event) {
 
 		String anno = this.txtAnno.getText();
+		int annoInt = 0;
 		
 		try {
 			
-			int annoInt = Integer.parseInt(anno);
+			annoInt = Integer.parseInt(anno);
 			
 		}catch(NumberFormatException e) {
 //			this.Reset(event);
@@ -44,7 +45,11 @@ public class BordersController {
 			return;
 		}
 		
-		m.createGraph(anno);
+		if(annoInt < 1816 && annoInt > 2006)
+			this.txtResult.appendText("l'anno inserito non è presente nel DB\n");
+
+			
+		m.createGraph(annoInt);
 		
 		txtResult.setText("Todo!");
 	}
