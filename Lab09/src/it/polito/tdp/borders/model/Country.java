@@ -6,7 +6,7 @@ public class Country {
 	private String nomeStato;
 	private int codiceContinente;
 	
-	public Country(String abbrevStato, String nomeStato, int codiceContinente) {
+	public Country(int codiceContinente, String abbrevStato, String nomeStato) {
 		this.abbrevStato = abbrevStato;
 		this.nomeStato = nomeStato;
 		this.codiceContinente = codiceContinente;

@@ -9,10 +9,11 @@ import java.util.List;
 
 import it.polito.tdp.borders.model.Border;
 import it.polito.tdp.borders.model.Country;
+import it.polito.tdp.borders.model.CountryMap;
 
 public class BordersDAO {
-
-	public List<Country> loadAllCountries() {
+										//int cCode
+	public List<Country> loadAllCountries(CountryMap cm) {
 
 		String sql = "SELECT ccode, StateAbb, StateNme FROM country ORDER BY ccode";
 		List<Country> result = new ArrayList<Country>();
@@ -23,8 +24,17 @@ public class BordersDAO {
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				System.out.format("%d %s %s\n", rs.getInt("ccode"), rs.getString("StateAbb"), rs.getString("StateNme"));
+				
+				String name = rs.getString("StateNme");
+				String abbr = rs.getString("StateAbb");
+				int code = rs.getInt("ccode");
+				
+				Country c = new Country(code, abbr, name);
+				System.out.format("%d %s %s\n", code, abbr, name);
+				
+				result.add(cm.getByObj(c));
 			}
+
 			
 			conn.close();
 			return result;
