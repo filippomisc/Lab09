@@ -4,9 +4,10 @@ public class TestModel {
 
 	public static void main(String[] args) {
 
-		Model model = new Model();
+		Model m = new Model();
 
-		System.out.println("TestModel -- TODO");
+		m.createGraph(1993);
+		System.out.println();
 		
 //		System.out.println("Creo il grafo relativo al 2000");
 //		model.createGraph(2000);
