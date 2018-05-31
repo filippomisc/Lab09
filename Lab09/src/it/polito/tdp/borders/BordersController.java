@@ -41,17 +41,21 @@ public class BordersController {
 			
 		}catch(NumberFormatException e) {
 //			this.Reset(event);
-			this.txtResult.appendText("il formato inserito non è corretto\n");
+			this.txtResult.setText("il formato inserito non è corretto\n");
 			return;
 		}
 		
-		if(annoInt < 1816 && annoInt > 2006)
-			this.txtResult.appendText("l'anno inserito non è presente nel DB\n");
+		if(annoInt < 1816 || annoInt > 2006) {
+			this.txtResult.setText("l'anno inserito non è presente nel DB\n");
+		}else {
 
 			
 		m.createGraph(annoInt);
-		
-		txtResult.setText("Todo!");
+		txtResult.appendText(String.format("Grafo creato con %d vertici e %d archi.\n", m.getVertex(), m.getEdge()));
+		txtResult.appendText("\n");
+
+		txtResult.appendText(m.getVicini());
+		}
 		
 	}
 

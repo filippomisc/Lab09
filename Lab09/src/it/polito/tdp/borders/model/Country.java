@@ -64,10 +64,10 @@ public class Country {
 		
 		risultato.append(this.nomeStato + "\n");
 		
-		risultato.append("codice Stato: " + this.codiceContinente + "  "
-				+ "bbreviazione: " + this.abbrevStato + "\n");
+		risultato.append("Codice Stato: " + this.codiceContinente + " - "
+				+ "Abbreviazione: " + this.abbrevStato + "\n");
 		
-		risultato.append("numero Stati confinanti: " + this.numVicini + "\n");
+		risultato.append("Numero Stati confinanti: " + this.numVicini + "\n");
 		
 		risultato.append("\n");
 		return risultato.toString();

@@ -9,16 +9,10 @@ public class TestModel {
 		Model m = new Model();
 
 		m.createGraph(1993);
-		System.out.println();
-		
-		List<Country> vertici = m.getCountries();
 		
 		
-		for(Country c : vertici) {		
-			m.SetNumberNeighboringStates(c,1993);
-
-			System.out.println(c.toString());
-		}
+		m.getVicini();
+		
 		
 //		System.out.println("Creo il grafo relativo al 2000");
 //		model.createGraph(2000);

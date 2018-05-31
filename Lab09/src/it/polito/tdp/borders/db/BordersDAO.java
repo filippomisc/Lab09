@@ -9,13 +9,13 @@ import java.util.List;
 
 import it.polito.tdp.borders.model.Border;
 import it.polito.tdp.borders.model.Country;
-import it.polito.tdp.borders.model.CountryMap;
+import it.polito.tdp.borders.model.CountryIdMap;
 
 public class BordersDAO {
 
-	public List<Country> loadAllCountries(CountryMap cm) {
+	public List<Country> loadAllCountries(CountryIdMap cm) {
 
-		String sql = "SELECT ccode, StateAbb, StateNme FROM country ORDER BY ccode";
+		String sql = "SELECT ccode, StateAbb, StateNme FROM country ORDER BY StateNme";
 		List<Country> result = new ArrayList<Country>();
 		
 		try {
@@ -46,7 +46,7 @@ public class BordersDAO {
 		}
 	}
 
-	public List<Border> getCountryPairs(int anno) {
+	public List<Border> getCountryPairs(CountryIdMap cm, int anno) {
 
 		String sql = "SELECT contiguity.state1no as s1, contiguity.state2no as s2\r\n" + 
 				"FROM contiguity\r\n" + 
@@ -57,6 +57,7 @@ public class BordersDAO {
 		List<Border> result = new ArrayList<Border>();
 		
 		try {
+			
 			Connection conn = ConnectDB.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
 			st.setInt(1, anno);
@@ -67,10 +68,21 @@ public class BordersDAO {
 				int state1no = rs.getInt("s1");
 				int state2no  = rs.getInt("s2");
 				
-				Border b = new Border(state1no, state2no);
+				Country c1 = cm.getByID(state1no);
+				Country c2 = cm.getByID(state2no);
+				
+				// Just check that c1 and c2 object really exist, otherwise skip them
+				if (c1 != null && c2 != null) {
+					
+					Border b = new Border(c1, c2);
+					result.add(b);
+					
+				} else {
+					System.out.println("Error skipping " + String.valueOf(state1no) + " - " + String.valueOf(state2no));
+				}
+							
 //				System.out.format("%d %s %s\n", code, abbr, name);
 				
-				result.add(b);
 			}
 
 			conn.close();

@@ -2,11 +2,11 @@ package it.polito.tdp.borders.model;
 
 import java.util.*;
 
-public class CountryMap {
+public class CountryIdMap {
 	
 	private Map<Integer,Country> countryMap;
 
-	public CountryMap() {
+	public CountryIdMap() {
 		
 		this.countryMap = new HashMap<>();
 	}
@@ -22,7 +22,12 @@ public class CountryMap {
 	}
 
 
-
+	/**
+	 * metodo che controlla se esiste l'oggtto nella mappa.
+	 * 
+	 * @param c
+	 * @return se esiste gia l'oggetto mi restitusice quello vecchio. altrimenti quello nuovo
+	 */
 	public Country getByObj(Country c) {
 		Country cOld = this.countryMap.get(c.getCodiceContinente());
 		if (cOld == null) {
@@ -31,6 +36,7 @@ public class CountryMap {
 		}
 		return cOld;
 	}
+	
 	
 	public void put(Country c, int id) {
 		this.countryMap.put(id, c);
