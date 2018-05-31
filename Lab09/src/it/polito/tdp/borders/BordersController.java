@@ -13,6 +13,7 @@ import it.polito.tdp.borders.model.Country;
 import it.polito.tdp.borders.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -29,6 +30,9 @@ public class BordersController {
 	private URL location;
 
 	@FXML
+	private Button btnVicini;
+	
+	@FXML
 	private ComboBox<Country> boxPaesi;
 	
 	@FXML // fx:id="txtAnno"
@@ -37,14 +41,22 @@ public class BordersController {
 	@FXML // fx:id="txtResult"
 	private TextArea txtResult; // Value injected by FXMLLoader
 
+	
+	
+	
+	
+	/*
+	 *non serve un evento per popolare la comboBox. possiamo farlo 
+	 *direttamente in doCalcolaConfini() dopo aver creato il grafo
+	 */
 	private void setComboPaesi(){
 		
-		country = m.getCountries();
-		
-		Collections.sort(country);
-		
-		this.boxPaesi.getItems().addAll(country);
-		
+//		country = m.getCountries();
+//		
+//		Collections.sort(country);
+//		
+//		this.boxPaesi.getItems().addAll(country);
+//		
 	}
 	@FXML
 	void doCalcolaConfini(ActionEvent event) {
@@ -73,10 +85,19 @@ public class BordersController {
 
 		txtResult.appendText(m.getVicini());
 		
-		this.setComboPaesi();
+		//this.setComboPaesi();
+		
+		country = m.getCountries();
+		this.boxPaesi.getItems().addAll(country);
+		
 		}
 		
 	}
+	
+    @FXML
+    void trovaTuttiIVicini(ActionEvent event) {
+    	
+    }
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete
 	void initialize() {
