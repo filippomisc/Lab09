@@ -1,5 +1,7 @@
 package it.polito.tdp.borders.model;
 
+import java.util.List;
+
 public class TestModel {
 
 	public static void main(String[] args) {
@@ -8,6 +10,15 @@ public class TestModel {
 
 		m.createGraph(1993);
 		System.out.println();
+		
+		List<Country> vertici = m.getCountries();
+		
+		
+		for(Country c : vertici) {		
+			m.SetNumberNeighboringStates(c,1993);
+
+			System.out.println(c.toString());
+		}
 		
 //		System.out.println("Creo il grafo relativo al 2000");
 //		model.createGraph(2000);

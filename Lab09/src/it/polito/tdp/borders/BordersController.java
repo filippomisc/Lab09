@@ -52,6 +52,7 @@ public class BordersController {
 		m.createGraph(annoInt);
 		
 		txtResult.setText("Todo!");
+		
 	}
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete

@@ -16,6 +16,7 @@ public class Model {
 	private BordersDAO dao;
 	private List<Border> borders;
 	private CountryMap cM;
+	
 
 
 	public Model() {
@@ -59,9 +60,23 @@ public class Model {
 			
 		}
 				System.out.println(String.format("vertici creati: %d - archi creati: %d\n", this.graph.vertexSet().size(), this.graph.edgeSet().size()));
-		
-		
+	}
+
+	public void SetNumberNeighboringStates (Country c,int anno) {
+		//this.createGraph(anno);
+		List<Country> vicini = Graphs.neighborListOf(this.graph, this.cM.getByObj(c));
+		System.out.println(vicini.size());
+		this.cM.getByObj(c).setNumVicini(vicini.size());
 		
 	}
 
+	public Graph<Country, DefaultEdge> getGraph() {
+		return graph;
+	}
+
+	public List<Country> getCountries() {
+		return countries;
+	}
+
+	
 }

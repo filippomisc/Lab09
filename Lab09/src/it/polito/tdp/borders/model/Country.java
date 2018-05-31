@@ -5,11 +5,26 @@ public class Country {
 	private String abbrevStato;
 	private String nomeStato;
 	private int codiceContinente;
+	private int numVicini;
 	
+	public Country() {	
+		
+	}
+	
+	
+	public int getNumVicini() {
+		return numVicini;
+	}
+	public void setNumVicini(int numVicini) {
+		this.numVicini = numVicini;
+	}
+
+
 	public Country(int codiceContinente, String abbrevStato, String nomeStato) {
 		this.abbrevStato = abbrevStato;
 		this.nomeStato = nomeStato;
 		this.codiceContinente = codiceContinente;
+		numVicini = 0;
 	}
 
 	public String getAbbrevStato() {
@@ -38,8 +53,25 @@ public class Country {
 
 	@Override
 	public String toString() {
-		return "Country [abbrevStato=" + abbrevStato + ", nomeStato=" + nomeStato + ", codiceContinente="
-				+ codiceContinente + "]";
+		
+		return abbrevStato + ", " + nomeStato + ", "
+				+ codiceContinente + " , "+ this.getNumVicini();
+	}
+	
+	public String toStringWithVicini() {
+		
+		StringBuilder risultato = new StringBuilder();
+		
+		risultato.append(this.nomeStato + "\n");
+		
+		risultato.append("codice Stato: " + this.codiceContinente + "  "
+				+ "bbreviazione: " + this.abbrevStato + "\n");
+		
+		risultato.append("numero Stati confinanti: " + this.numVicini + "\n");
+		
+		risultato.append("\n");
+		return risultato.toString();
+		
 	}
 
 	@Override
