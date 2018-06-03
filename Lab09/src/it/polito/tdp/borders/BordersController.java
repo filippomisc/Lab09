@@ -22,6 +22,7 @@ public class BordersController {
 
 	Model m;
 	List<Country> country;
+	private int annoInt = 0;
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
@@ -31,6 +32,9 @@ public class BordersController {
 
 	@FXML
 	private Button btnVicini;
+	
+    @FXML
+    private Button btnReset;
 	
 	@FXML
 	private ComboBox<Country> boxPaesi;
@@ -60,9 +64,13 @@ public class BordersController {
 	}
 	@FXML
 	void doCalcolaConfini(ActionEvent event) {
+		
+		txtResult.clear();
+		this.boxPaesi.setDisable(false);
+		this.btnVicini.setDisable(false);
+		this.btnReset.setDisable(false);
 
 		String anno = this.txtAnno.getText();
-		int annoInt = 0;
 		
 		try {
 			
@@ -83,7 +91,7 @@ public class BordersController {
 		txtResult.appendText(String.format("Grafo creato con %d vertici e %d archi.\n", m.getVertex(), m.getEdge()));
 		txtResult.appendText("\n");
 
-		txtResult.appendText(m.getVicini());
+		txtResult.appendText(m.stampaVicini(annoInt));
 		
 		//this.setComboPaesi();
 		
@@ -97,6 +105,31 @@ public class BordersController {
     @FXML
     void trovaTuttiIVicini(ActionEvent event) {
     	
+    	this.txtResult.clear();
+    	
+    	Country c = this.boxPaesi.getValue();
+    	
+    	List<Country> vicini = m.getVicini(c);
+    	
+    	
+    	String result = "";
+    	for(Country v : vicini)
+    		result += v.getNomeStato() + "\n";
+    	this.txtResult.setText("Gli stati confinanti dello stato scelto sono: \n" + result);
+    	
+    	
+    }
+    
+
+    @FXML
+    void doReset(ActionEvent event) {
+    this.txtAnno.clear();
+    this.txtResult.clear();
+    this.boxPaesi.getSelectionModel().clearSelection();    
+    
+    this.btnVicini.setDisable(true);
+    this.boxPaesi.setDisable(true);
+    
     }
 
 	@FXML // This method is called by the FXMLLoader when initialization is complete

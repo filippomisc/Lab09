@@ -90,18 +90,23 @@ public class Model {
 		return this.countries;
 	}
 
-	public String getVicini() {
+	public String stampaVicini(int anno) {
 
 		List<Country> vertici = getCountries();
 		
 		String result = "";
 		
 		for(Country c : vertici) {		
-			SetNumberNeighboringStates(c,1993);
+			SetNumberNeighboringStates(c,anno);
 
 			result += c.toStringWithVicini();
 		}	
 		return result;
+	}
+	
+	public String stampaVicini(Country c, int annoInt) {
+		
+		return null;
 	}
 
 	public int getVertex() {
@@ -111,6 +116,17 @@ public class Model {
 	public int getEdge() {
 		return this.graph.edgeSet().size();
 	}
+
+	public List<Country> getVicini(Country c) {
+		
+		
+		Country c1 = cM.getByObj(c);
+		
+		return Graphs.neighborListOf(this.graph, c1);
+		
+	}
+
+	
 
 	
 }

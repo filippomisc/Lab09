@@ -11,7 +11,7 @@ public class TestModel {
 		m.createGraph(1993);
 		
 		
-		m.getVicini();
+		m.stampaVicini(1993);
 		
 		
 //		System.out.println("Creo il grafo relativo al 2000");
